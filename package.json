@@ -1,0 +1,16 @@
+{
+  "name": "nest-rest-sample",
+  "version": "1.0.0",
+  "description": "REST API sample project using Nest",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "nest.js": "^1.0.6",
+    "typescript": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "ts-node": "^3.0.4"
+  }
+}
