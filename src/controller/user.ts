@@ -44,7 +44,6 @@ export class UserController {
     const maxId = this.users.reduce((a: number, b: User) => {
       return Math.max(a, b.id)
     }, 0);
-    console.log(`name: ${name}`);
     const user: User = {
       id: maxId + 1,
       name: name,
