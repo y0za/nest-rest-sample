@@ -1,17 +1,13 @@
 import { Component } from 'nest.js';
-
-interface User {
-  id: number;
-  name: string;
-}
+import { User } from '../entity/user';
 
 @Component()
 export class UserService {
   private users: User[] = [
-    { id: 1, name: 'kaban' },
-    { id: 2, name: 'serval' },
-    { id: 3, name: 'raccoon' },
-    { id: 4, name: 'fennec' },
+    new User(1, 'kaban'),
+    new User(2, 'serval'),
+    new User(3, 'raccoon'),
+    new User(4, 'fennec'),
   ];
 
   getUsers(): User[] {
