@@ -1,35 +1,22 @@
-import { Component } from 'nest.js';
+import { Component, Inject } from 'nest.js';
 import { User } from '../entity/user';
+import { UserRepository } from '../repository/user';
 
 @Component()
 export class UserService {
-  private users: User[] = [
-    new User('kaban', 1),
-    new User('serval', 2),
-    new User('raccoon', 3),
-    new User('fennec', 4),
-  ];
-
-  getUsers(): User[] {
-    return this.users;
+  constructor(@Inject('UserRepository') private userRepository: UserRepository) {
   }
 
-  getUser(id: string): User | null {
-    return this.users.find((u: User) => {
-      return u.id.toString() === id
-    });
+  getUsers(): User[] {
+    return this.userRepository.find();
+  }
+
+  getUser(id: number): User | null {
+    return this.userRepository.findFirst(id);
   }
 
   addUser(name: string): User {
-    const maxId = this.users.reduce((a: number, b: User) => {
-      return Math.max(a, b.id)
-    }, 0);
-    const user: User = {
-      id: maxId + 1,
-      name: name,
-    };
-    this.users.push(user);
-
-    return user;
+    const user = new User(name);
+    return this.userRepository.save(user);
   }
 }

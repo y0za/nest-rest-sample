@@ -26,14 +26,21 @@ export class UserController {
 
   @Get('/:id')
   show(@Response() res: express.Response, @Param('id') id: string): void {
-    const user = this.userService.getUser(id);
+    const userId = parseInt(id, 10);
+    if (isNaN(userId)) {
+      res.status(HttpStatus.BAD_REQUEST).json({
+        error: `id must be integer. id: ${id}`,
+      });
+    }
+
+    const user = this.userService.getUser(userId);
 
     res.status(HttpStatus.OK).json(user);
   }
 
   @Post()
   create(@Response() res: express.Response, @Body('name') name: string): void {
-    const user = this.userService.getUser(name);
+    const user = this.userService.addUser(name);
 
     res.status(HttpStatus.CREATED).json(user);
   }
