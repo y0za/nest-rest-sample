@@ -4,10 +4,10 @@ import { User } from '../entity/user';
 @Component()
 export class UserService {
   private users: User[] = [
-    new User(1, 'kaban'),
-    new User(2, 'serval'),
-    new User(3, 'raccoon'),
-    new User(4, 'fennec'),
+    new User('kaban', 1),
+    new User('serval', 2),
+    new User('raccoon', 3),
+    new User('fennec', 4),
   ];
 
   getUsers(): User[] {
